@@ -663,7 +663,7 @@ def test_assign_collection_to_product(product_in_stock):
     data = product.__dict__
     data = {
         'name': product.name,
-        'price': product.price.gross,
+        'price': product.price.value,
         'category': product.category.pk,
         'description': 'description',
         'collections': [collection.pk]
