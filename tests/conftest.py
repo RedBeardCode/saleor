@@ -261,13 +261,13 @@ def product_in_stock(product_type, default_category):
     warehouse_2 = StockLocation.objects.create(name='Warehouse 2')
     warehouse_3 = StockLocation.objects.create(name='Warehouse 3')
     Stock.objects.create(
-        variant=variant, cost_price=Amount(1, currency='USD'),
+        variant=variant, cost_price=Amount('1.00', currency='USD'),
         quantity=5, quantity_allocated=5, location=warehouse_1)
     Stock.objects.create(
-        variant=variant, cost_price=Amount(100, currency='USD'),
+        variant=variant, cost_price=Amount('100.00', currency='USD'),
         quantity=5, quantity_allocated=5, location=warehouse_2)
     Stock.objects.create(
-        variant=variant, cost_price=Amount(10, currency='USD'),
+        variant=variant, cost_price=Amount('10.00', currency='USD'),
         quantity=5, quantity_allocated=0, location=warehouse_3)
     return product
 
@@ -278,7 +278,7 @@ def product_without_shipping(default_category):
         name='Type with no shipping', has_variants=False,
         is_shipping_required=False)
     product = Product.objects.create(
-        name='Test product', price=Decimal('10.00'),
+        name='Test product', price=Amount('10.00', currency='USD'),
         product_type=product_type, category=default_category)
     variant = ProductVariant.objects.create(product=product, sku='SKU_B')
     return product
